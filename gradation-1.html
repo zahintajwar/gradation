@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            max-width: 400px;
+        }
+
+        label {
+            display: inline-block;
+            margin: 5px 0;
+        }
+
+        input {
+            margin: 5px 0 10px;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Gradation Calculator</h1>
+    <form>
+        <label for="id_subjects">Subjects:</label>
+        <input id="id_subjects" type="number" min="1" placeholder="Enter number of subjects" />
+        <br>
+        <label for="id_marks">Total Marks:</label>
+        <input id="id_marks" type="number" min="1" placeholder="Enter total marks" />
+        <br>
+        <button type="button" onclick="calculate()">Submit</button>
+    </form>
+
+    <div class="result" id="result_section" style="display: none;">
+        <p><strong>Average Marks:</strong> <span id="id_avg"></span></p>
+        <p><strong>Grade:</strong> <span id="id_grade"></span></p>
+        <p><strong>Grade Point:</strong> <span id="id_gradepoint"></span></p>
+        <p><strong>Accomplishment:</strong> <span id="id_accomp"></span></p>
+    </div>
+
+    <script>
+        function calculate() {
+            const sub = parseFloat(document.getElementById("id_subjects").value);
+            const marks = parseFloat(document.getElementById("id_marks").value);
+
+            // Validate input
+            if (!sub || !marks || sub <= 0 || marks <= 0) {
+                alert("Please enter valid positive numbers for subjects and total marks.");
+                return;
+            }
+
+            const result = marks / sub;
+
+            // Display the average
+            document.getElementById("id_avg").textContent = result.toFixed(2);
+
+            let grade = "", gradepoint = "", Accomp = "";
+
+            if (result >= 90) {
+                grade = "A Plus";
+                gradepoint = "4.00";
+                Accomp = "Outstanding";
+            } else if (result >= 85) {
+                grade = "A";
+                gradepoint = "3.70";
+                Accomp = "Excellent";
+            } else if (result >= 80) {
+                grade = "A Minus";
+                gradepoint = "3.30";
+                Accomp = "Excellent";
+            } else if (result >= 75) {
+                grade = "B Plus";
+                gradepoint = "3.00";
+                Accomp = "Good";
+            } else if (result >= 70) {
+                grade = "B";
+                gradepoint = "2.70";
+                Accomp = "Good";
+            } else if (result >= 65) {
+                grade = "C Plus";
+                gradepoint = "2.30";
+                Accomp = "Good";
+            } else if (result >= 60) {
+                grade = "C";
+                gradepoint = "2.00";
+                Accomp = "Fair";
+            } else if (result >= 57) {
+                grade = "C Minus";
+                gradepoint = "1.70";
+                Accomp = "Fair";
+            } else if (result >= 55) {
+                grade = "D Plus";
+                gradepoint = "1.30";
+                Accomp = "Poor";
+            } else if (result >= 51) {
+                grade = "D Minus";
+                gradepoint = "0.70";
+                Accomp = "Poor";
+            } else {
+                grade = "F";
+                gradepoint = "0.00";
+                Accomp = "Failed";
+            }
+
+            // Display grade details
+            document.getElementById("id_grade").textContent = grade;
+            document.getElementById("id_gradepoint").textContent = gradepoint;
+            document.getElementById("id_accomp").textContent = Accomp;
+
+            // Show the result section
+            document.getElementById("result_section").style.display = "block";
+        }
+        console.log(addNumber(10, 200));
+        function addNumber(a, b) {
+            let result = a + b;
+            return result;
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
